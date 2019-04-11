@@ -1,14 +1,11 @@
-SPOTIFY_CLIENT_ID = "e3f4e0c2b60443c29893e9356dc48f8e"
-SPOTIFY_CLIENT_SECRET = "3c2c297f48d64a64b9a9147ef3e742f6"
-
 # spotify-ruby
 
 require 'spotify'
 
 # Connect to Spotify app
 @accounts = Spotify::Accounts.new
-@accounts.client_id = "e3f4e0c2b60443c29893e9356dc48f8e"
-@accounts.client_secret = "3c2c297f48d64a64b9a9147ef3e742f6"
+@accounts.client_id = SPOTIFY_CLIENT_ID
+@accounts.client_secret = SPOTIFY_CLIENT_SECRET
 @accounts.redirect_uri = "http://localhost:9292/callback"
 
 # FIXME: URL generated includes `oauth`
@@ -20,19 +17,13 @@ code = "nada"
 # FIXME: wrong number of arguments in the method call from the Accounts object
 @session = @accounts.exchange_for_session(code)
 
-@session.crank_it_up
-
-def this_is_a_method
-  puts "I'm a method, silly!"
-end
-
 ##=============================================##
 
 # RSpotify
 
 require 'rspotify'
 
-RSpotify.authenticate("e3f4e0c2b60443c29893e9356dc48f8e", "3c2c297f48d64a64b9a9147ef3e742f6")
+RSpotify.authenticate(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
 
 # Hit this URL: => "https://accounts.spotify.com/authorize?client_id=e3f4e0c2b60443c29893e9356dc48f8e&redirect_uri=http%3A%2F%2Flocalhost%3A9292%2Fcallback&response_type=code&scope=playlist-read-private+playlist-read-collaborative+playlist-modify-public+playlist-modify-private+ugc-image-upload+user-follow-modify+user-follow-read+user-library-read+user-library-modify+user-read-private+user-read-birthdate+user-read-email+user-top-read+user-read-playback-state+user-modify-playback-state+user-read-currently-playing+user-read-recently-played+streaming+app-remote-control"
 # Grab the code and store below
