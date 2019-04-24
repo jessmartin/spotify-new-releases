@@ -3,10 +3,12 @@ require 'httparty'
 # 1. Have your application request authorization; the user logs in and authorizes access
 # https://accounts.spotify.com/authorize/
 
-auth_request_url = "https://accounts.spotify.com/authorize?client_id=#{SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=https%3A%2F%2Flocalhost:9292%2Fcallback&scope=user-follow-modify,user-library-read,playlist-read-collaborative,playlist-modify-private,user-modify-playback-state,streaming,app-remote-control,user-read-private,user-read-birthdate,user-read-playback-state,playlist-read-private,user-top-read,user-read-email,playlist-modify-public,user-library-modify,user-follow-read,user-read-currently-playing,user-read-recently-played"
+SPOTIFY_CLIENT_ID = "e3f4e0c2b60443c29893e9356dc48f8e"
+
+auth_request_url = "https://accounts.spotify.com/authorize?client_id=#{SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost:9292%2Fcallback&scope=user-follow-modify,user-library-read,playlist-read-collaborative,playlist-modify-private,user-modify-playback-state,streaming,app-remote-control,user-read-private,user-read-birthdate,user-read-playback-state,playlist-read-private,user-top-read,user-read-email,playlist-modify-public,user-library-modify,user-follow-read,user-read-currently-playing,user-read-recently-played"
 
 # temporary code (lasts a few hours?)
-code = "AQCZTR5dLkawduzpjA-otpUxL3pw4vR9PSe4R6VdRJvMF1qOcsXGyT6H-zutMFZ781jjw0L__WdBeym22JuNZFE_l3sHs0cz5msYYBWKDuGPO0ZPwYsokdWfbkc2trksN2MGOFZG294ZrmTaqKBvMiyp3gXcW-u0OEZPudcM_J2tcprtoS-wl9SOKw5lr3_Tldd9kRjkSAZsK9i6BrmA3iQn8ZVEtTAJtS_tUZFld-EDtaH8QET3OzxQqST4NZ1uz3tmYsTcy-1S5yRj85WWZZLchFprD7f6-00XXlIHQdUdsNmLUlSsg-ejVMOk6NNjDNQUNXMvYjug4iITvsm67sMhVDufhlnHAAoSeTzKttglC2VRdpA8MuBeUle56uuFYuXA0rOeF0uE0NxxjBSA5Q0IKtXM5EATOc8QX5dznJqhNIEtqOIrVJ7UjTSLqOQEoSjk1hIaJxX2DzTaj6BkzjTk92CWsfsa3O-bEd7sLYVp16wANsSzLatx30tW8nZhneAHJRHucxqP47bD0fa_9PHaO9xAGkgTHGMh4Hj_q1YDTe9ROaW3BaujTgeuZ7_qtmbYLLc4chN3bG8FOkh4ikaNpEJ-zyWjfjD7njh75LNoqkePZ6zbMxtlVG-9b_mGsAvOemxFCMSjBBnH97OtrDEBe8CQ9-3N2jEsOCk7nexgrxBYOMEE2LkeYFeewn9zWR7NMR8xFuWfjUpbLOY"
+code = "AQC3qb7C47ivzMnU0kLlg3bJkhGMCjCxnr-ETpyBP9W7ijyw53qAm4xb1pNypA6vWt3fu9BAfSfM5lbIbQTLC3gRrXUKDGIXlOEqaP8SRJ8geTXPYybxKQeWQsdXbPrV11U_jAmOo8Debq8YKpMKQTLWOfFiH_tzMev-LeB2ZLr01NJWQROSa4s9iAhDPGB4dYpnJDUt-BMb4T9u2R0X20i73_giWYT94-nW8hq_kYn2rmzMerwDh56C79MPs3A_xJaELoB6FfDyToYDRarpYh14a_oNepYvihej80um_pSS9n9myJtO4ns7bH6oyybu24b-exxhvK6gOFLcrx2YJjhNelEYp4_JZnef-qSTlQ0lylR552jxyZrXuIhMfxSwFQnGASo1C2ExOi7wNLXgRJgN2YY9xWeK0deKDaAXKJrggOFlHANohoRbHKKM7lWsvRgGvc0030BNK-gVGYgEfXzBc-E4KDEp9cTdk2yf_P9egLDn-z9RP3kV3ohoggUeSOI_zJ1zgoOwwv8t2KMbUULNCkjChwUT-MLHcV7oJxXrFU8eSYNg4K9-HlEYWVKX6qWvpAzkIpC9L5T8SDd7-1t5-6rCNb5cwWQQalXjdl-2zFxKKMv4MdUjNVYfvmX031Mx7wz53uGXw1kuh42fchx7sPUzZldiqhKdk5Cz-ykGNGZoZANjzgXQQSdPlSlauc2q8VLGwVvnVodB4PE"
 
 # https://developer.spotify.com/documentation/general/guides/authorization-guide/
 
