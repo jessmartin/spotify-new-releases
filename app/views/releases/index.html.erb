@@ -1,16 +1,15 @@
 <h1>Releases</h1>
 
-<p><%= @albums.length %> albums released in last year</p>
+<p>You follow <%= pluralize(@followed_artists.length, "artist") %>.</p>
 
-<ul>
+<div class="releases">
   <% @albums.each do |album| %>
-    <li>
-      <ul>
-        <li><%= album["name"] %></li>
-        <li><%= album["artists"][0]["name"] %></li>
-        <li><%= album["total_tracks"] %> tracks</li>
-        <li><%= album["release_date"] %></li>
-      </ul>
-    </li>
+    <div class="release">
+      <img class="album-cover-image" src="<%= album["images"][0]["url"] %>" />
+      <h3 class="album-name"><%= album["name"] %></h3>
+      <h4 class="album-artist"><%= album["artists"][0]["name"] %></h4>
+      <span class="album-track-count"><%= album["total_tracks"] %> tracks</span>
+      <span class="album-release-date"><%= album["release_date"] %></span>
+    </div>
   <% end %>
-</ul>
+</div>
