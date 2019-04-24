@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: client_id=&client_secret=&code=invalid-code&grant_type=authorization_code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback
+    headers:
+      Accept:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 24 Apr 2019 18:17:49 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '26'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=600
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_client"}'
+    http_version: 
+  recorded_at: Wed, 24 Apr 2019 18:17:49 GMT
+recorded_with: VCR 4.0.0

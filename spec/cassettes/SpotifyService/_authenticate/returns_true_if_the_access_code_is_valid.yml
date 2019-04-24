@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: client_id=e3f4e0c2b60443c29893e9356dc48f8e&client_secret=3c2c297f48d64a64b9a9147ef3e742f6&code=AQBbYzJwWQ9gNskeH3Stg6dlSN9jqYguA4cK50gJp-GAvHopS3tGIWgqBk3FrHqFmhnq9UFd3yBCPdVwhftnD6z0nY7puM1YJAjQJAyrNHym4mQiCUwLLKOnzBlVwPDeupnm0eiXJTglKX6wU4_Dx930Rv6eld6jazQLHFZDPSa-qGvJ8qTLNxzWMX7zhJrOx-PpL0Fdzn4KW3ridJRwETuvoQWN5GoE7KytE__937uDjVF5F3G0PPUrlBrU0DaAQsMpny65qzstMT3aDiLkt6r9qbd2JhvOqqMu-UO4puA8DVd2s2bGO4pIPZmTjYb57ZrdMT6CRDBDHSRJJ4MUkcXAriZgkSXVA1vqfQV6IBW556njWlfpgbzT-aM5_1KcNj5r11Qu-9XEWKRPm4m1BdrVi6w2Tam5pSvLrfYONOcRy2OMCh4jngs6SWIYO9JrtMnh2iPfem9pbZ9mvDkUzM6bxn_RbzAhfRyFjtdkg_eny2aN0NcNCFnBFFvr3aM3drFB62Az2lFr9eXgONDIKhNIR9Q0rWEc86-jmbtIkyDjqHuqnev8BBTbEX7E2A_paBSw9FayIakRU2PBgevlcMG115JzE7icaFNATGc6RzSeivz-S7k871DQHF6OAhsOewyPXUG8j4mGSLxmiB99jd_0JnRhAaBDFdayHUorkqLQ6QMA58PMzTJeYxN1zzcaCOYS_dpHESZChrIP4I4&grant_type=authorization_code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback
+    headers:
+      Accept:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 24 Apr 2019 18:32:08 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '883'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=600
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"BQDfdPs4xr42Z7ja4AVHwRJj3EQ4CBRJsWiATUY03YRk_AHKb0H4Njs0WHfErpsRmvI0LlNbL3AXicszm9EVZgPjZjepLF3-TdboJbBrIQ_sZf0Ud8ceaYsscjFEDv_7CKeD9Zeot1x-JRnON2_qcId-O0disHD1D-_xs-YzfsC0hfIp1VKjhiySGJkda8ggHyiIAVTPPMIGofzrMSnLALEel0_jmFKZOVOBkVkUfeLoKcyMVVIZT1-vvnanRSkrUQpXVDClizsSgTNmeg4P5T3WixHgODA","token_type":"Bearer","expires_in":3600,"refresh_token":"AQAXqyErX7m9jzWBKz4PMftiOvOQ9f4LyiEA9teHyHh-mvGjeHbQRw1zpO41tGIVNgMEp6RFISrVcDo5UcpG3hzngi_783caZg-LJT3gr__UbMcz8zqjCRFUhPCnqQ2jfyGzMg","scope":"playlist-read-private
+        playlist-read-collaborative user-follow-read playlist-modify-private user-read-email
+        user-read-private streaming app-remote-control user-follow-modify user-modify-playback-state
+        user-library-read user-library-modify playlist-modify-public user-read-playback-state
+        user-read-currently-playing user-read-birthdate user-read-recently-played
+        user-top-read"}'
+    http_version: 
+  recorded_at: Wed, 24 Apr 2019 18:32:08 GMT
+recorded_with: VCR 4.0.0
