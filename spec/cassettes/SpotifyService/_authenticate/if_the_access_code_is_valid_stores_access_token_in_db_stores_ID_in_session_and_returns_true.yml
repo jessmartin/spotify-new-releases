@@ -41,5 +41,5 @@ http_interactions:
         user-read-currently-playing user-read-birthdate user-read-recently-played
         user-top-read"}'
     http_version: 
-  recorded_at: Wed, 24 Apr 2019 18:32:08 GMT
+  recorded_at: Wed, 24 Apr 2019 18:57:45 GMT
 recorded_with: VCR 4.0.0

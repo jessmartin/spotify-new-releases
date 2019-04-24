@@ -11,9 +11,17 @@ class SpotifyService
                                     grant_type: "authorization_code",
                                     redirect_uri: "http://localhost:3000/callback"
                                   })
-    auth_response['access_token'] ? true : false
-    # Store the access token and refresh token in the database by "user id"
-    # Return true if all goes well
+
+    return false unless auth_response.success?
+
+    access_token = AccessToken.create(
+      access_token: auth_response['access_token'],
+      refresh_token: auth_response['refresh_token'],
+      token_type: auth_response['token_type'],
+      expires_in: Time.now + auth_response['expires_in'].to_i,
+    )
+
+    access_token ? true : false
   end
 
 end
