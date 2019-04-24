@@ -1,3 +1,16 @@
 <h1>Releases</h1>
 
 <p><%= @albums.length %> albums released in last year</p>
+
+<ul>
+  <% @albums.each do |album| %>
+    <li>
+      <ul>
+        <li><%= album["name"] %></li>
+        <li><%= album["artists"][0]["name"] %></li>
+        <li><%= album["total_tracks"] %> tracks</li>
+        <li><%= album["release_date"] %></li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
