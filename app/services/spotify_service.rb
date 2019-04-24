@@ -14,14 +14,14 @@ class SpotifyService
 
     return false unless auth_response.success?
 
-    access_token = AccessToken.create(
+    user = User.create(
       access_token: auth_response['access_token'],
       refresh_token: auth_response['refresh_token'],
       token_type: auth_response['token_type'],
       expires_in: Time.now + auth_response['expires_in'].to_i,
     )
 
-    access_token ? true : false
+    user
   end
 
 end
