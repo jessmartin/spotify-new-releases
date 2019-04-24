@@ -15,6 +15,6 @@ class AuthController < ApplicationController
 
     user = SpotifyService.authenticate(code)
 
-    session[:access_token] = access_token
+    cookies.permanent[:remember_token] = user.remember_token
   end
 end

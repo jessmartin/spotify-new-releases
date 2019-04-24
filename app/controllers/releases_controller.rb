@@ -2,16 +2,17 @@ require 'httparty'
 
 class ReleasesController < ApplicationController
   def index
-    access_token = session[:access_token]
+    remember_token = cookies[:remember_token]
+    user = User.find_by(remember_token: remember_token)
 
     followed_artists_response = HTTParty.get("https://api.spotify.com/v1/me/following", 
       query: { type: 'artist' },
-      headers: {"Authorization" => "Bearer #{access_token}"})
+      headers: {"Authorization" => "Bearer #{user.access_token}"})
     @followed_artists = followed_artists_response["artists"]["items"]
 
     all_albums = @followed_artists.collect do |artist|
       albums_response = HTTParty.get("https://api.spotify.com/v1/artists/#{artist["id"]}/albums", 
-                                      headers: {"Authorization" => "Bearer #{access_token}"})
+                                      headers: {"Authorization" => "Bearer #{user.access_token}"})
       albums_response["items"]
     end.flatten
 

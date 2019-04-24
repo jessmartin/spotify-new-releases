@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class SpotifyService
 
   def self.authenticate(code)
@@ -19,6 +21,7 @@ class SpotifyService
       refresh_token: auth_response['refresh_token'],
       token_type: auth_response['token_type'],
       expires_in: Time.now + auth_response['expires_in'].to_i,
+      remember_token: SecureRandom.uuid,
     )
 
     user
