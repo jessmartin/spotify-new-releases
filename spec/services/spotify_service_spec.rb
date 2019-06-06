@@ -17,4 +17,21 @@ RSpec.describe SpotifyService, :vcr do
       end.to change { User.count }.by(1)
     end
   end
+
+  describe ".get_recent_albums_for" do
+    let(:user) { User.new(access_token: "BQCglneaf-osQ50FKcfsV0HRbABrfdF2PhZ9diu5LfFQC9canNvukI-xcMYcaGp5rjsC4NaMblc21d7CvI5YohxLLfKBPeLVwGDTtT5693-PEcyuMQXZfYX6shPy3c-bXgOy4y9m7VG--jZgNCopIhkX09x4Rqb9ECjdXqo4FPn52oaqPAlYB8WnkrBmHwdgQ6iV5amiz8x-MMaLMuo36-HsdOQI95vS4WO2CfCnQ3gf-FKTQrlX1SXnwNeFuvnV1DJYeEPVAJgFBcPZOrS712zuQmWJ-Pk") }
+
+    it "returns albums released within the time frame" do
+      time_of_spotify_api_request = Time.local(2019, 6, 6, 11, 24, 0)
+      
+      Timecop.travel(time_of_spotify_api_request) do
+        albums = SpotifyService.get_recent_albums_for(user: user, released_after: 2.week.ago)
+
+        expect(albums).not_to be_empty
+        albums.each do |album|
+          expect(Date.parse(album["release_date"]) > 2.weeks.ago).to be true
+        end
+      end
+    end
+  end
 end
