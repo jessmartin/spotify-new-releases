@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'httparty'
 
 class SpotifyService
 
@@ -27,4 +28,27 @@ class SpotifyService
     user
   end
 
+  def self.get_recent_albums_for(user:, released_after:)
+    # Get all artists for user (in chunks of 50)
+    # Get all albums for _each_ artist (in chunks of 50)
+    # Sort the albums by release date
+    # Group into weeks
+    # Cache Artist and Album Responses for Each User
+
+    followed_artists_response = HTTParty.get("https://api.spotify.com/v1/me/following", 
+      query: { type: 'artist' },
+      headers: {"Authorization" => "Bearer #{user.access_token}"})
+    followed_artists = followed_artists_response["artists"]["items"]
+
+    all_albums = followed_artists.collect do |artist|
+      albums_response = HTTParty.get("https://api.spotify.com/v1/artists/#{artist["id"]}/albums", 
+                                      headers: {"Authorization" => "Bearer #{user.access_token}"})
+      albums_response["items"]
+    end.flatten
+
+    # all_albums.select do |album|
+    #   next if album["release_date_precision"] != "day"
+    #   Date.today - 14 < Date.parse(album["release_date"])
+    # end
+  end
 end
