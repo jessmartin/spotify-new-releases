@@ -33,6 +33,7 @@ class SpotifyService
     # Get all albums for _each_ artist (in chunks of 50)
     # Sort the albums by release date
     # Group into weeks
+    # Cache Artist and Album Responses for Each User
 
     followed_artists_response = HTTParty.get("https://api.spotify.com/v1/me/following", 
       query: { type: 'artist' },
@@ -45,9 +46,9 @@ class SpotifyService
       albums_response["items"]
     end.flatten
 
-    all_albums.select do |album|
-      next if album["release_date_precision"] != "day"
-      Date.today - 14 < Date.parse(album["release_date"])
-    end
+    # all_albums.select do |album|
+    #   next if album["release_date_precision"] != "day"
+    #   Date.today - 14 < Date.parse(album["release_date"])
+    # end
   end
 end
