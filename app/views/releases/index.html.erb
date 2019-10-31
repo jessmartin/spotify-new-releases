@@ -1,7 +1,16 @@
 <h1>Releases</h1>
 
 <div class="releases">
+  <% current_year_and_week_number = "none" %>
+
   <% @albums.each do |album| %>
+    <!-- Does this album fall into a new week? -->
+    <% album_release_date = Date.parse(album["release_date"]).to_date %>
+    <% release_year_week = "#{album_release_date.year} Week #{album_release_date.cweek}" %>
+    <% if current_year_and_week_number != release_year_week  %>
+      <% current_year_and_week_number = release_year_week %>
+      <h2 class="week-label"><%= current_year_and_week_number %></h2>
+    <% end %>
     <div class="release">
       <img class="album-cover-image" src="<%= album["images"][0]["url"] %>" />
       <h3 class="album-name"><%= album["name"] %></h3>
