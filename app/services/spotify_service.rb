@@ -28,7 +28,7 @@ class SpotifyService
     user
   end
 
-  def self.get_recent_albums_for(user:, released_after:)
+  def self.get_recent_albums_for(user:, released_cutoff_date:)
     followed_artists_response = HTTParty.get("https://api.spotify.com/v1/me/following", 
       query: { type: 'artist', limit: 50 }, 
       headers: {"Authorization" => "Bearer #{user.access_token}"})
@@ -49,10 +49,10 @@ class SpotifyService
       albums_response["items"]
     end.flatten
 
-    if released_after
+    if released_cutoff_date
       all_albums.select do |album|
         next if album["release_date_precision"] != "day"
-        released_after < Date.parse(album["release_date"])
+        released_cutoff_date < Date.parse(album["release_date"])
       end
     end
 

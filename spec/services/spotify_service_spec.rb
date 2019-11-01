@@ -25,7 +25,7 @@ RSpec.describe SpotifyService, :vcr do
       time_of_spotify_api_request = Time.local(2019, 6, 6, 11, 24, 0)
       
       Timecop.travel(time_of_spotify_api_request) do
-        albums = SpotifyService.get_recent_albums_for(user: user, released_after: 2.week.ago)
+        albums = SpotifyService.get_recent_albums_for(user: user, released_cutoff_date: 2.week.ago)
 
         expect(albums).not_to be_empty
         expect(albums.count).not_to eq(0)
