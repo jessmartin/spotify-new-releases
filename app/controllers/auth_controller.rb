@@ -7,7 +7,7 @@ class AuthController < ApplicationController
 
     # Render the button to connect to Spotify
     @client_id = Rails.configuration.spotify_client_id
-    @redirect_uri = "http://localhost:3000/callback"
+    @redirect_uri = "#{Rails.configuration.domain}/callback"
   end
 
   def callback

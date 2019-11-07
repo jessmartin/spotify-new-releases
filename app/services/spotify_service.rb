@@ -12,7 +12,7 @@ class SpotifyService
                                     'client_secret' => Rails.configuration.spotify_client_secret,
                                     code: code,
                                     grant_type: "authorization_code",
-                                    redirect_uri: "http://localhost:3000/callback"
+                                    redirect_uri: "#{Rails.configuration.domain}/callback"
                                   })
 
     return false unless auth_response.success?
