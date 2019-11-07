@@ -6,7 +6,7 @@ class AuthController < ApplicationController
     # SpotifyService.authenticated?(user_id)
 
     # Render the button to connect to Spotify
-    @client_id = Rails.application.secrets.spotify_client_id
+    @client_id = Rails.configuration.spotify_client_id
     @redirect_uri = "http://localhost:3000/callback"
   end
 
