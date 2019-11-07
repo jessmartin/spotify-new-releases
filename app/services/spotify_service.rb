@@ -28,17 +28,20 @@ class SpotifyService
     user
   end
 
-  def self.get_recent_albums_for(user:, released_after:)
-    # Get all artists for user (in chunks of 50)
-    # Get all albums for _each_ artist (in chunks of 50)
-    # Sort the albums by release date
-    # Group into weeks
-    # Cache Artist and Album Responses for Each User
-
+  def self.get_recent_albums_for(user:, released_cutoff_date:)
     followed_artists_response = HTTParty.get("https://api.spotify.com/v1/me/following", 
-      query: { type: 'artist' },
+      query: { type: 'artist', limit: 50 }, 
       headers: {"Authorization" => "Bearer #{user.access_token}"})
     followed_artists = followed_artists_response["artists"]["items"]
+
+    until followed_artists_response["artists"]["next"].blank?
+      last_artist_id = followed_artists_response["artists"]["cursors"]["after"]
+
+      followed_artists_response = HTTParty.get("https://api.spotify.com/v1/me/following", 
+        query: { type: 'artist', after: last_artist_id, limit: 50 }, 
+        headers: {"Authorization" => "Bearer #{user.access_token}"})
+      followed_artists = followed_artists_response["artists"]["items"]
+    end
 
     all_albums = followed_artists.collect do |artist|
       albums_response = HTTParty.get("https://api.spotify.com/v1/artists/#{artist["id"]}/albums", 
@@ -46,9 +49,14 @@ class SpotifyService
       albums_response["items"]
     end.flatten
 
-    # all_albums.select do |album|
-    #   next if album["release_date_precision"] != "day"
-    #   Date.today - 14 < Date.parse(album["release_date"])
-    # end
+    if released_cutoff_date
+      all_albums.select do |album|
+        next if album["release_date_precision"] != "day"
+        released_cutoff_date < Date.parse(album["release_date"])
+      end
+    end
+
+    all_albums.select { |a| a["release_date_precision"] == "day" }
+                    .sort { |a, b| b["release_date"] <=> a["release_date"] }
   end
 end

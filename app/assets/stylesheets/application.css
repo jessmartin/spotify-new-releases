@@ -73,6 +73,11 @@ body {
   border: 1px solid red;
 }
 
+.week-label {
+  flex-basis: 100%;
+  height: 0;
+}
+
 .releases {
   flex-wrap: wrap;
   display: flex;
