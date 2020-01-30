@@ -8,11 +8,11 @@ class SpotifyService
     auth_response = HTTParty.post("https://accounts.spotify.com/api/token",
                                   headers: { 'Accept' => 'application/json' },
                                   body: {
-                                    'client_id' => Rails.application.secrets.spotify_client_id,
-                                    'client_secret' => Rails.application.secrets.spotify_client_secret,
+                                    'client_id' => Rails.configuration.spotify_client_id,
+                                    'client_secret' => Rails.configuration.spotify_client_secret,
                                     code: code,
                                     grant_type: "authorization_code",
-                                    redirect_uri: "http://localhost:3000/callback"
+                                    redirect_uri: "#{Rails.configuration.domain}/callback"
                                   })
 
     return false unless auth_response.success?
