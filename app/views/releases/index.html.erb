@@ -12,7 +12,9 @@
       <h2 class="week-label"><%= current_year_and_week_number %></h2>
     <% end %>
     <div class="release">
-      <img class="album-cover-image" src="<%= album["images"][0]["url"] %>" />
+      <a href="<%= album["external_urls"]["spotify"] %>">
+        <img class="album-cover-image" src="<%= album["images"][0]["url"] %>" />
+      </a>
       <h3 class="album-name"><%= album["name"] %></h3>
       <h4 class="album-artist"><%= album["artists"][0]["name"] %></h4>
       <span class="album-release-date">Released on <%= album["release_date"] %></span>
