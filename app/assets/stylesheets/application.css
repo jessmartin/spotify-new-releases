@@ -88,10 +88,16 @@ body {
   padding: 20px
 }
 
+.release a:hover .album-cover-image {
+  border: 3px solid #666;
+  margin: 1px;
+}
+
 .album-cover-image {
   height: 190px;
   width: 190px;
   border: 1px solid #333;
+  margin: 3px;
 }
 
 .album-name {
