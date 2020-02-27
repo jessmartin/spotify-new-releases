@@ -12,6 +12,10 @@ test:
   <<: *default
   database: spotify_new_releases_test
 
+staging:
+  <<: *default
+  database: spotify_new_releases_staging
+
 production:
   <<: *default
   database: spotify_new_releases_production
